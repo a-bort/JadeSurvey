@@ -1,4 +1,4 @@
-exports.dbUri = process.env.MONGOLAB_URI;
+exports.dbUri = process.env.MONGODB_URI;
 exports.port = process.env.PORT;
 
 exports.dev = process.env.DEV;
