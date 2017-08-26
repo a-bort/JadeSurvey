@@ -146,7 +146,7 @@ Question.prototype.toJSON = function(){
   var json = {};
 
   json.question = this.title;
-  json.ansers = this.getDisplayValues();
+  json.answers = this.getDisplayValues();
   json.otherValue = this.other ? this.otherValue : null;
 
   if(this.enabled && typeof(this.enabled) == "function" && !this.enabled()){
@@ -194,7 +194,17 @@ surveyApp.controller('SurveyController', function($scope, $http, $location){
       model.push(questions[i].toJSON());
     }
 
-    console.log(model);
+    $http.post('/submit/', model).success(function(data){
+      if(data.error){
+        console.log(data.error);
+        alert(data.error);
+        return;
+      }
+      alert('Success! (Redirect instead)');
+    }).error(function(err){
+      console.log(err);
+      alert('Error saving game');
+    });
   }
 
   var answerStack = [];
