@@ -1,57 +1,62 @@
 <html>
   <head>
-    <title>Survey</title>
+    <title>Customer Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script type="text/javascript" src="/javascripts/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/javascripts/vendor/angular/angular.min.js"></script>
     <script type="text/javascript" src="/javascripts/vendor/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="/javascripts/app/survey.js"></script>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
   </head>
   <body ng-app="SurveyApp">
-    <div ng-controller="SurveyController" class="container-fluid">
-      <h2>Survey</h2>
-      <div>
-        <h3>{{activeQuestion.title}}</h3>
-        <div ng-if="activeQuestion.type == 'text'">
-          <form>
-            <div ng-repeat="item in activeQuestion.items">
-              <label>{{item.label}}</label>
-              <input type="text" ng-model="item.value"/>
+    <h2>Customer Survey</h2>
+    <div class="page-content">
+      <div ng-controller="SurveyController" class="container-fluid">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <h3>{{activeQuestion.title}}</h3>
             </div>
-            <div ng-if="activeQuestion.other">
-              <input type="text" placeholder="Other" ng-model="item.otherValue"/>
-            </div>
-          </form>
-        </div>
-        <div ng-if="activeQuestion.type == 'textarea'">
-          <form>
-            <textarea ng-model="activeQuestion.value"></textarea>
-          </form>
-        </div>
-        <div ng-if="activeQuestion.type == 'checkbox'">
-          <form>
-            <div ng-repeat="item in activeQuestion.items">
-              <input type="checkbox" ng-model="item.selected" ng-value="item.value"/>
-              <label>{{item.label}}</label>
-            </div>
-            <div ng-if="activeQuestion.other">
-              <input type="checkbox" ng-model="activeQuestion.otherSelected" ng-value="item.value"/>
-              <input type="text" placeholder="Other" ng-model="activeQuestion.otherValue" ng-change="activeQuestion.otherChanged()"/>
-            </div>
-          </form>
-        </div>
-        <div ng-if="activeQuestion.type == 'radio'">
-          <form>
-            <div ng-repeat="item in activeQuestion.items">
-              <input type="radio" ng-model="activeQuestion.value" ng-value="item.value"/>
-              <label>{{item.label}}</label>
-            </div>
-            <div ng-if="activeQuestion.other">
-              <input type="radio" ng-model="activeQuestion.value" value="other"/>
-              <input type="text" placeholder="Other" ng-model="activeQuestion.otherValue"/>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div ng-if="activeQuestion.type == 'text'">
+              <div class="form-group" ng-repeat="item in activeQuestion.items">
+                <label class="col-sm-2 control-label">{{item.label}}</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model="item.value"/>
+                </div>
+              </div>
+              <div class="form-group" ng-if="activeQuestion.other">
+                <div class="col-sm-12">
+                  <input type="text" placeholder="Other" ng-model="item.otherValue"/>
+                </div>
+              </div>
+          </div>
+          <div ng-if="activeQuestion.type == 'textarea'">
+              <textarea ng-model="activeQuestion.value"></textarea>
+          </div>
+          <div ng-if="activeQuestion.type == 'checkbox'">
+              <div ng-repeat="item in activeQuestion.items">
+                <input type="checkbox" ng-model="item.selected" ng-value="item.value"/>
+                <label>{{item.label}}</label>
+              </div>
+              <div ng-if="activeQuestion.other">
+                <input type="checkbox" ng-model="activeQuestion.otherSelected" ng-value="item.value"/>
+                <input type="text" placeholder="Other" ng-model="activeQuestion.otherValue" ng-change="activeQuestion.otherChanged()"/>
+              </div>
+          </div>
+          <div ng-if="activeQuestion.type == 'radio'">
+              <div ng-repeat="item in activeQuestion.items">
+                <input type="radio" ng-model="activeQuestion.value" ng-value="item.value"/>
+                <label>{{item.label}}</label>
+              </div>
+              <div ng-if="activeQuestion.other">
+                <input type="radio" ng-model="activeQuestion.value" value="other"/>
+                <input type="text" placeholder="Other" ng-model="activeQuestion.otherValue"/>
+              </div>
+          </div>
+        </form>
         <div>
           <button class="btn" ng-click="prev()" ng-disabled="activeIndex == 0">< Previous</button>
           <button class="btn" ng-click="next()" ng-disabled="!questionComplete()" ng-show="!lastQuestion()">Next ></button>
