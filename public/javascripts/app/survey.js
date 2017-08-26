@@ -20,9 +20,9 @@ var questions = [
     title: "Sample checkbox",
     type: "checkbox",
     items: [
-      {label: "Option 1", val: "1"},
-      {label: "Option 2", val: "2"},
-      {label: "Option 3", val: "3"}
+      {label: "Option 1", value: "1"},
+      {label: "Option 2", value: "2"},
+      {label: "Option 3", value: "3"}
     ],
     other: true,
     options: {
@@ -33,8 +33,8 @@ var questions = [
     title: "Sample Radio",
     type: "radio",
     items: [
-      {label: "Yes", val: "yes"},
-      {label: "No", val: "no"}
+      {label: "Yes", value: "yes"},
+      {label: "No", value: "no"}
     ],
     other: true,
     options: {
@@ -100,13 +100,32 @@ Question.prototype.getValues = function(){
   var values = [];
   if(this.type == "text"){
     for(var i = 0; i < this.items.length; i++){
-      values.push(this.items[i].text);
+      values.push(this.items[i].value);
     }
   } else if(this.type == "checkbox"){
     for(var i = 0; i < this.items.length; i++){
       var item = this.items[i];
       if(item.selected){
-        values.push(item.val);
+        values.push(item.value);
+      }
+    }
+  } else if(this.type == "radio" || this.type == "textarea"){
+    values.push(this.value);
+  }
+  return values;
+}
+
+Question.prototype.getDisplayValues = function(){
+  var values = [];
+  if(this.type == "text"){
+    for(var i = 0; i < this.items.length; i++){
+      values.push(this.items[i].label + "|" + this.items[i].value);
+    }
+  } else if(this.type == "checkbox"){
+    for(var i = 0; i < this.items.length; i++){
+      var item = this.items[i];
+      if(item.selected){
+        values.push(item.value);
       }
     }
   } else if(this.type == "radio" || this.type == "textarea"){
@@ -117,10 +136,24 @@ Question.prototype.getValues = function(){
 
 Question.prototype.extractValue = function(lineItem){
   if(this.type == "text"){
-    return lineItem.text;
-  } else if(this.type == "checkbox"){
-    return lineItem.selected;
+    return lineItem.value;
+  } else if(this.type == "checkbox" && lineItem.selected){
+    return lineItem.value;
   }
+}
+
+Question.prototype.toJSON = function(){
+  var json = {};
+
+  json.question = this.title;
+  json.ansers = this.getDisplayValues();
+  json.otherValue = this.other ? this.otherValue : null;
+
+  if(this.enabled && typeof(this.enabled) == "function" && !this.enabled()){
+    json.na = true;
+  }
+
+  return json;
 }
 
 surveyApp.controller('SurveyController', function($scope, $http, $location){
@@ -154,6 +187,15 @@ surveyApp.controller('SurveyController', function($scope, $http, $location){
   $scope.lastQuestion = function(){
     return $scope.activeIndex == questions.length - 1;
   };
+
+  $scope.submit = function(){
+    var model = [];
+    for(var i = 0; i < questions.length; i++){
+      model.push(questions[i].toJSON());
+    }
+
+    console.log(model);
+  }
 
   var answerStack = [];
 });

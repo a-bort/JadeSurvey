@@ -16,7 +16,7 @@
           <form>
             <div ng-repeat="item in activeQuestion.items">
               <label>{{item.label}}</label>
-              <input type="text" ng-model="item.text"/>
+              <input type="text" ng-model="item.value"/>
             </div>
             <div ng-if="activeQuestion.other">
               <input type="text" placeholder="Other" ng-model="item.otherValue"/>
@@ -31,11 +31,11 @@
         <div ng-if="activeQuestion.type == 'checkbox'">
           <form>
             <div ng-repeat="item in activeQuestion.items">
-              <input type="checkbox" ng-model="item.selected" ng-value="item.val"/>
+              <input type="checkbox" ng-model="item.selected" ng-value="item.value"/>
               <label>{{item.label}}</label>
             </div>
             <div ng-if="activeQuestion.other">
-              <input type="checkbox" ng-model="activeQuestion.otherSelected" ng-value="item.val"/>
+              <input type="checkbox" ng-model="activeQuestion.otherSelected" ng-value="item.value"/>
               <input type="text" placeholder="Other" ng-model="activeQuestion.otherValue" ng-change="activeQuestion.otherChanged()"/>
             </div>
           </form>
@@ -43,7 +43,7 @@
         <div ng-if="activeQuestion.type == 'radio'">
           <form>
             <div ng-repeat="item in activeQuestion.items">
-              <input type="radio" ng-model="activeQuestion.value" ng-value="item.val"/>
+              <input type="radio" ng-model="activeQuestion.value" ng-value="item.value"/>
               <label>{{item.label}}</label>
             </div>
             <div ng-if="activeQuestion.other">
@@ -55,7 +55,7 @@
         <div>
           <button class="btn" ng-click="prev()" ng-disabled="activeIndex == 0">< Previous</button>
           <button class="btn" ng-click="next()" ng-disabled="!questionComplete()" ng-show="!lastQuestion()">Next ></button>
-          <button class="btn btn-success" ng-disabled="!questionComplete()" ng-show="lastQuestion()">Complete</button>
+          <button class="btn btn-success" ng-click="submit()" ng-disabled="!questionComplete()" ng-show="lastQuestion()">Complete</button>
         </div>
       </div>
     </div>
