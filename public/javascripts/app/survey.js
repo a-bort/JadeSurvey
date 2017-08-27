@@ -29,7 +29,7 @@ var questions = [
       ],
       other: true,
       options: {
-        required: "all"
+        required: "any"
       }
     }),
   new Question({
