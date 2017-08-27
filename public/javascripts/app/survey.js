@@ -16,33 +16,172 @@ var questions = [
       required: "all"
     }
   }),
+  new Question(
+    {
+      title: "What are you looking to get out of your outdoor space? (Select all that apply)",
+      type: "checkbox",
+      items: [
+        {label: "Fresh Produce", val: "produce"},
+        {label: "Fresh Herbs", val: "herbs"},
+        {label: "Nature and Serenity", val: "nature"},
+        {label: "Habitat for Wildlife", val: "wildlife"},
+        {label: "Utility (i.e mosquito repellent, catnip, privacy)", val: "utility"}
+      ],
+      other: true,
+      options: {
+        required: "all"
+      }
+    }),
   new Question({
-    title: "Sample checkbox",
+      title: "Which do you value more?",
+      type: "radio",
+      items: [
+        {label: "Practicality & Utility", val: "utility"},
+        {label: "Beautiy & Aesthetics", val: "beauty"},
+        {label: "Both about the same", val: "both"}
+      ]
+    }),
+  new Question({
+      title: "Do you cook at home?",
+      type: "radio",
+      items: [
+        {label: "Yes!", val: "yes"},
+        {label: "Not often", val: "meh"},
+        {label: "Never", val: "no"}
+      ],
+      enabled: function(){
+        return questions[0].getValues().includes("produce")
+                || questions[0].getValues().includes("herbs");
+      }
+    }),
+  new Question({
+      title: "What type(s) of cuisine do you regularly cook? (Please excuse our gross overgeneralizations)",
+      type: "checkbox",
+      items: [
+        {label: "American, Western European", val: "euro"},
+        {label: "Asian (Eastern, Southeastern)", val: "asian"},
+        {label: "Italian", val: "italian"},
+        {label: "Indian, Middle Eastern, African", val: "indian"},
+        {label: "Mexican, Central & South American", val: "mexican"}
+      ],
+      other: true,
+      enabled: function(){
+        return questions[0].getValues().includes("produce")
+                || questions[0].getValues().includes("herbs");
+      }
+    }),
+  new Question({
+      title: "What types of fresh produce do you typically purchase? (Select all that apply)",
+      type: "checkbox",
+      items: [
+        {label: "Vegetables", val: "veggies"},
+        {label: "Fruit", val: "fruit"},
+        {label: "Nuts", val: "nuts"}
+      ],
+      other: true,
+      enabled: function(){
+        return questions[0].getValues().includes("produce");
+      }
+    }),
+  new Question({
+      title: "Do you make cocktails at home?",
+      type: "radio",
+      items: [
+        {label: "Yes", val: "yes"},
+        {label: "No", val: "no"}
+      ],
+      options: {
+        required: "any"
+      },
+      enabled: function(){
+        return questions[0].getValues().includes("herbs");
+      }
+    }),
+  new Question({
+      title: "Do you make Medicinal or Herbal tea at home?",
+      type: "radio",
+      items: [
+        {label: "Yes", val: "yes"},
+        {label: "No", val: "no"}
+      ],
+      enabled: function(){
+        return questions[0].getValues().includes("herbs");
+      }
+    }),
+  new Question({
+      title: "Do you enjoy colorful flowers?",
+      type: "radio",
+      items: [
+        {label: "Yes! The brighter the better", val: "yes"},
+        {label: "In moderation", val: "some"},
+        {label: "Not so much", val: "no"}
+      ],
+      enabled: function(){
+        return questions[0].getValues().includes("nature");
+      }
+    }),
+  new Question({
+      title: "Do you enjoy lush green landscapes?",
+      type: "radio",
+      items: [
+        {label: "Yes! I want a forest in my yard", val: "yes"},
+        {label: "Some greenery is nice", val: "some"},
+        {label: "Not thanks, too plain", val: "no"}
+      ],
+      enabled: function(){
+        return questions[0].getValues().includes("nature");
+      }
+    }),
+  new Question({
+    title: "What types of wildlife would you like to attract? (Select all that apply)",
     type: "checkbox",
     items: [
-      {label: "Option 1", value: "1"},
-      {label: "Option 2", value: "2"},
-      {label: "Option 3", value: "3"}
+      {label: "Birds", val: "birds"},
+      {label: "Bees", val: "bees"},
+      {label: "Butterflies", val: "butterflies"},
+      {label: "Bats", val: "bats"}
     ],
     other: true,
-    options: {
-      required: "any"
+    enabled: function(){
+      return questions[0].getValues().includes("wildlife");
     }
   }),
   new Question({
-    title: "Sample Radio",
-    type: "radio",
+    title: "What other types of utility would you like to get out of your space? (Select all that apply)",
+    type: "checkbox",
     items: [
-      {label: "Yes", value: "yes"},
-      {label: "No", value: "no"}
+      {label: "Mosquito repellent", val: "mosquito"},
+      {label: "Catnip (for my cat)", val: "catnip"},
+      {label: "Fragrance", val: "smell"},
+      {label: "Privacy", val: "privacy"},
     ],
     other: true,
-    options: {
-      required: "any"
-    },
     enabled: function(){
-      return questions[1].getValues().includes("2");
+      return questions[0].getValues().includes("utility");
     }
+  }),
+  new Question({
+    title: "How much time do you foresee spending in your space?",
+    type: "radio",
+    items: [
+      {label: "5-10 minutes most days", val: "frequent"},
+      {label: "At least half an hour a day", val: "alot"},
+      {label: "Hard to say, my schedule is unpredictable", val: "dunno"},
+      {label: "I don’t really have free time", val: "none"}
+    ]
+  }),
+  new Question({
+    title: "If you had expert advice easily available on your smartphone, would you be more confident when gardening or caring for a landscape?",
+    type: "radio",
+    items: [
+      {label: "Yes! Sounds appealing", val: "yes"},
+      {label: "No thanks, I’m confident in my abilities", val: "nah"},
+      {label: "Leave technology out of it!", val: "no"}
+    ]
+  }),
+  new Question({
+    title: "Are there certain plants you would like to specifically request?",
+    type: "textarea"
   }),
   new Question({
     title: "Anything else you'd like to share with us?",
