@@ -21,11 +21,11 @@ var questions = [
       title: "What are you looking to get out of your outdoor space? (Select all that apply)",
       type: "checkbox",
       items: [
-        {label: "Fresh Produce", val: "produce"},
-        {label: "Fresh Herbs", val: "herbs"},
-        {label: "Nature and Serenity", val: "nature"},
-        {label: "Habitat for Wildlife", val: "wildlife"},
-        {label: "Utility (i.e mosquito repellent, catnip, privacy)", val: "utility"}
+        {label: "Fresh Produce", value: "produce"},
+        {label: "Fresh Herbs", value: "herbs"},
+        {label: "Nature and Serenity", value: "nature"},
+        {label: "Habitat for Wildlife", value: "wildlife"},
+        {label: "Utility (i.e mosquito repellent, catnip, privacy)", value: "utility"}
       ],
       other: true,
       options: {
@@ -36,18 +36,18 @@ var questions = [
       title: "Which do you value more?",
       type: "radio",
       items: [
-        {label: "Practicality & Utility", val: "utility"},
-        {label: "Beautiy & Aesthetics", val: "beauty"},
-        {label: "Both about the same", val: "both"}
+        {label: "Practicality & Utility", value: "utility"},
+        {label: "Beautiy & Aesthetics", value: "beauty"},
+        {label: "Both about the same", value: "both"}
       ]
     }),
   new Question({
       title: "Do you cook at home?",
       type: "radio",
       items: [
-        {label: "Yes!", val: "yes"},
-        {label: "Not often", val: "meh"},
-        {label: "Never", val: "no"}
+        {label: "Yes!", value: "yes"},
+        {label: "Not often", value: "meh"},
+        {label: "Never", value: "no"}
       ],
       enabled: function(){
         return questions[0].getValues().includes("produce")
@@ -58,11 +58,11 @@ var questions = [
       title: "What type(s) of cuisine do you regularly cook? (Please excuse our gross overgeneralizations)",
       type: "checkbox",
       items: [
-        {label: "American, Western European", val: "euro"},
-        {label: "Asian (Eastern, Southeastern)", val: "asian"},
-        {label: "Italian", val: "italian"},
-        {label: "Indian, Middle Eastern, African", val: "indian"},
-        {label: "Mexican, Central & South American", val: "mexican"}
+        {label: "American, Western European", value: "euro"},
+        {label: "Asian (Eastern, Southeastern)", value: "asian"},
+        {label: "Italian", value: "italian"},
+        {label: "Indian, Middle Eastern, African", value: "indian"},
+        {label: "Mexican, Central & South American", value: "mexican"}
       ],
       other: true,
       enabled: function(){
@@ -74,9 +74,9 @@ var questions = [
       title: "What types of fresh produce do you typically purchase? (Select all that apply)",
       type: "checkbox",
       items: [
-        {label: "Vegetables", val: "veggies"},
-        {label: "Fruit", val: "fruit"},
-        {label: "Nuts", val: "nuts"}
+        {label: "Vegetables", value: "veggies"},
+        {label: "Fruit", value: "fruit"},
+        {label: "Nuts", value: "nuts"}
       ],
       other: true,
       enabled: function(){
@@ -87,8 +87,8 @@ var questions = [
       title: "Do you make cocktails at home?",
       type: "radio",
       items: [
-        {label: "Yes", val: "yes"},
-        {label: "No", val: "no"}
+        {label: "Yes", value: "yes"},
+        {label: "No", value: "no"}
       ],
       options: {
         required: "any"
@@ -101,8 +101,8 @@ var questions = [
       title: "Do you make Medicinal or Herbal tea at home?",
       type: "radio",
       items: [
-        {label: "Yes", val: "yes"},
-        {label: "No", val: "no"}
+        {label: "Yes", value: "yes"},
+        {label: "No", value: "no"}
       ],
       enabled: function(){
         return questions[0].getValues().includes("herbs");
@@ -112,9 +112,9 @@ var questions = [
       title: "Do you enjoy colorful flowers?",
       type: "radio",
       items: [
-        {label: "Yes! The brighter the better", val: "yes"},
-        {label: "In moderation", val: "some"},
-        {label: "Not so much", val: "no"}
+        {label: "Yes! The brighter the better", value: "yes"},
+        {label: "In moderation", value: "some"},
+        {label: "Not so much", value: "no"}
       ],
       enabled: function(){
         return questions[0].getValues().includes("nature");
@@ -124,9 +124,9 @@ var questions = [
       title: "Do you enjoy lush green landscapes?",
       type: "radio",
       items: [
-        {label: "Yes! I want a forest in my yard", val: "yes"},
-        {label: "Some greenery is nice", val: "some"},
-        {label: "Not thanks, too plain", val: "no"}
+        {label: "Yes! I want a forest in my yard", value: "yes"},
+        {label: "Some greenery is nice", value: "some"},
+        {label: "Not thanks, too plain", value: "no"}
       ],
       enabled: function(){
         return questions[0].getValues().includes("nature");
@@ -136,10 +136,10 @@ var questions = [
     title: "What types of wildlife would you like to attract? (Select all that apply)",
     type: "checkbox",
     items: [
-      {label: "Birds", val: "birds"},
-      {label: "Bees", val: "bees"},
-      {label: "Butterflies", val: "butterflies"},
-      {label: "Bats", val: "bats"}
+      {label: "Birds", value: "birds"},
+      {label: "Bees", value: "bees"},
+      {label: "Butterflies", value: "butterflies"},
+      {label: "Bats", value: "bats"}
     ],
     other: true,
     enabled: function(){
@@ -150,10 +150,10 @@ var questions = [
     title: "What other types of utility would you like to get out of your space? (Select all that apply)",
     type: "checkbox",
     items: [
-      {label: "Mosquito repellent", val: "mosquito"},
-      {label: "Catnip (for my cat)", val: "catnip"},
-      {label: "Fragrance", val: "smell"},
-      {label: "Privacy", val: "privacy"},
+      {label: "Mosquito repellent", value: "mosquito"},
+      {label: "Catnip (for my cat)", value: "catnip"},
+      {label: "Fragrance", value: "smell"},
+      {label: "Privacy", value: "privacy"},
     ],
     other: true,
     enabled: function(){
@@ -164,19 +164,19 @@ var questions = [
     title: "How much time do you foresee spending in your space?",
     type: "radio",
     items: [
-      {label: "5-10 minutes most days", val: "frequent"},
-      {label: "At least half an hour a day", val: "alot"},
-      {label: "Hard to say, my schedule is unpredictable", val: "dunno"},
-      {label: "I don’t really have free time", val: "none"}
+      {label: "5-10 minutes most days", value: "frequent"},
+      {label: "At least half an hour a day", value: "alot"},
+      {label: "Hard to say, my schedule is unpredictable", value: "dunno"},
+      {label: "I don’t really have free time", value: "none"}
     ]
   }),
   new Question({
     title: "If you had expert advice easily available on your smartphone, would you be more confident when gardening or caring for a landscape?",
     type: "radio",
     items: [
-      {label: "Yes! Sounds appealing", val: "yes"},
-      {label: "No thanks, I’m confident in my abilities", val: "nah"},
-      {label: "Leave technology out of it!", val: "no"}
+      {label: "Yes! Sounds appealing", value: "yes"},
+      {label: "No thanks, I’m confident in my abilities", value: "nah"},
+      {label: "Leave technology out of it!", value: "no"}
     ]
   }),
   new Question({
