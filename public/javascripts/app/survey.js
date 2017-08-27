@@ -50,8 +50,8 @@ var questions = [
         {label: "Never", value: "no"}
       ],
       enabled: function(){
-        return questions[0].getValues().includes("produce")
-                || questions[0].getValues().includes("herbs");
+        return questions[1].getValues().includes("produce")
+                || questions[1].getValues().includes("herbs");
       }
     }),
   new Question({
@@ -66,8 +66,8 @@ var questions = [
       ],
       other: true,
       enabled: function(){
-        return questions[0].getValues().includes("produce")
-                || questions[0].getValues().includes("herbs");
+        return questions[1].getValues().includes("produce")
+                || questions[1].getValues().includes("herbs");
       }
     }),
   new Question({
@@ -80,7 +80,7 @@ var questions = [
       ],
       other: true,
       enabled: function(){
-        return questions[0].getValues().includes("produce");
+        return questions[1].getValues().includes("produce");
       }
     }),
   new Question({
@@ -94,7 +94,7 @@ var questions = [
         required: "any"
       },
       enabled: function(){
-        return questions[0].getValues().includes("herbs");
+        return questions[1].getValues().includes("herbs");
       }
     }),
   new Question({
@@ -105,7 +105,7 @@ var questions = [
         {label: "No", value: "no"}
       ],
       enabled: function(){
-        return questions[0].getValues().includes("herbs");
+        return questions[1].getValues().includes("herbs");
       }
     }),
   new Question({
@@ -117,7 +117,7 @@ var questions = [
         {label: "Not so much", value: "no"}
       ],
       enabled: function(){
-        return questions[0].getValues().includes("nature");
+        return questions[1].getValues().includes("nature");
       }
     }),
   new Question({
@@ -129,7 +129,7 @@ var questions = [
         {label: "Not thanks, too plain", value: "no"}
       ],
       enabled: function(){
-        return questions[0].getValues().includes("nature");
+        return questions[1].getValues().includes("nature");
       }
     }),
   new Question({
@@ -143,7 +143,7 @@ var questions = [
     ],
     other: true,
     enabled: function(){
-      return questions[0].getValues().includes("wildlife");
+      return questions[1].getValues().includes("wildlife");
     }
   }),
   new Question({
@@ -157,7 +157,7 @@ var questions = [
     ],
     other: true,
     enabled: function(){
-      return questions[0].getValues().includes("utility");
+      return questions[1].getValues().includes("utility");
     }
   }),
   new Question({
