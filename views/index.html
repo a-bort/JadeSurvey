@@ -11,9 +11,15 @@
     <link rel="stylesheet" href="/stylesheets/style.css"/>
   </head>
   <body ng-app="SurveyApp">
-    <h2>Customer Survey</h2>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <span class="navbar-brand">Harvest Customer Survey</span>
+        </div>
+      </div>
+    </nav>
     <div class="page-content">
-      <div ng-controller="SurveyController" class="container-fluid">
+      <div ng-controller="SurveyController" class="container-fluid survey-panel">
         <form class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
@@ -22,8 +28,8 @@
           </div>
           <div ng-if="activeQuestion.type == 'text'">
               <div class="form-group" ng-repeat="item in activeQuestion.items">
-                <label class="col-sm-2 control-label">{{item.label}}</label>
-                <div class="col-sm-10">
+                <label class="col-sm-4 control-label">{{item.label}}</label>
+                <div class="col-sm-8">
                   <input type="text" ng-model="item.value"/>
                 </div>
               </div>
@@ -38,31 +44,42 @@
           </div>
           <div ng-if="activeQuestion.type == 'checkbox'">
               <div ng-repeat="item in activeQuestion.items">
-                <input type="checkbox" ng-model="item.selected" ng-value="item.value"/>
-                <label>{{item.label}}</label>
+                <label>
+                  <input type="checkbox" ng-model="item.selected" ng-value="item.value"/>
+                  {{item.label}}
+                </label>
               </div>
               <div ng-if="activeQuestion.other">
                 <input type="checkbox" ng-model="activeQuestion.otherSelected" ng-value="item.value"/>
-                <input type="text" placeholder="Other" ng-model="activeQuestion.otherValue" ng-change="activeQuestion.otherChanged()"/>
+                <input type="text" class="other" placeholder="Other" ng-model="activeQuestion.otherValue" ng-change="activeQuestion.otherChanged()"/>
               </div>
           </div>
           <div ng-if="activeQuestion.type == 'radio'">
               <div ng-repeat="item in activeQuestion.items">
-                <input type="radio" ng-model="activeQuestion.value" ng-value="item.value"/>
-                <label>{{item.label}}</label>
+                <label>
+                  <input type="radio" ng-model="activeQuestion.value" ng-value="item.value"/>
+                  {{item.label}}
+                </label>
               </div>
               <div ng-if="activeQuestion.other">
                 <input type="radio" ng-model="activeQuestion.value" value="other"/>
-                <input type="text" placeholder="Other" ng-model="activeQuestion.otherValue"/>
+                <input type="text" class="other" placeholder="Other" ng-model="activeQuestion.otherValue"/>
               </div>
           </div>
         </form>
         <div>
           <button class="btn" ng-click="prev()" ng-disabled="activeIndex == 0">< Previous</button>
-          <button class="btn" ng-click="next()" ng-disabled="!questionComplete()" ng-show="!lastQuestion()">Next ></button>
-          <button class="btn btn-success" ng-click="submit()" ng-disabled="!questionComplete()" ng-show="lastQuestion()">Complete</button>
+          <span class="right-buttons">
+            <button class="btn" ng-click="next()" ng-disabled="!questionComplete()" ng-show="!lastQuestion()">Next ></button>
+            <button class="btn btn-success" ng-click="submit()" ng-disabled="!questionComplete()" ng-show="lastQuestion()">Complete</button>
+          </span>
         </div>
       </div>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">&copy; Harvest Designs LLC 2017 </span>
+      </div>
+    </footer>
   </body>
 </html>
