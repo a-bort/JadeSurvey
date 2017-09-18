@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
   </head>
-  <body ng-app="SurveyApp">
+  <body ng-app="SurveyApp" ng-controller="SurveyController">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <span class="navbar-brand">Harvest Customer Survey</span>
+          <span class="navbar-brand">{{title}}</span>
         </div>
       </div>
     </nav>
     <div class="page-content">
-      <div ng-controller="SurveyController" class="container-fluid survey-panel">
+      <div class="container-fluid survey-panel">
         <form class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
@@ -39,29 +39,29 @@
                 </div>
               </div>
           </div>
-          <div ng-if="activeQuestion.type == 'textarea'">
+          <div class="form-group" ng-if="activeQuestion.type == 'textarea'">
               <textarea ng-model="activeQuestion.value"></textarea>
           </div>
           <div ng-if="activeQuestion.type == 'checkbox'">
-              <div ng-repeat="item in activeQuestion.items">
+              <div class="form-group" ng-repeat="item in activeQuestion.items">
                 <label>
                   <input type="checkbox" ng-model="item.selected" ng-value="item.value"/>
                   {{item.label}}
                 </label>
               </div>
-              <div ng-if="activeQuestion.other">
+              <div class="form-group" ng-if="activeQuestion.other">
                 <input type="checkbox" ng-model="activeQuestion.otherSelected" ng-value="item.value"/>
                 <input type="text" class="other" placeholder="Other" ng-model="activeQuestion.otherValue" ng-change="activeQuestion.otherChanged()"/>
               </div>
           </div>
           <div ng-if="activeQuestion.type == 'radio'">
-              <div ng-repeat="item in activeQuestion.items">
+              <div class="form-group" ng-repeat="item in activeQuestion.items">
                 <label>
                   <input type="radio" ng-model="activeQuestion.value" ng-value="item.value"/>
                   {{item.label}}
                 </label>
               </div>
-              <div ng-if="activeQuestion.other">
+              <div class="form-group" ng-if="activeQuestion.other">
                 <input type="radio" ng-model="activeQuestion.value" value="other"/>
                 <input type="text" class="other" placeholder="Other" ng-model="activeQuestion.otherValue"/>
               </div>
@@ -78,7 +78,7 @@
     </div>
     <footer class="footer">
       <div class="container">
-        <span class="text-muted">&copy; Harvest Designs LLC 2017 </span>
+        <span class="text-muted">&copy; Harvest Survey 2017 </span>
       </div>
     </footer>
   </body>

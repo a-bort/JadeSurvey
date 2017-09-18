@@ -296,6 +296,8 @@ Question.prototype.toJSON = function(){
 }
 
 surveyApp.controller('SurveyController', function($scope, $http, $location){
+  $scope.title = "Nightshade Culinary Landscapes - Customer Survey";
+
   $scope.activeIndex = 0;
   $scope.activeQuestion = questions[$scope.activeIndex];
 
