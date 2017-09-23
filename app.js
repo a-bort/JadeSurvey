@@ -18,7 +18,7 @@ var config = require('./config/config')
 app.use(express.static(path.join(__dirname, 'public')));
 
  //view stuff
-app.use(favicon(path.join(__dirname,'public','images','favicon.png')));
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
 var uri = config.dbUri;
 
