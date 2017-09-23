@@ -1,3 +1,11 @@
+/*pallete ideas
+#731DD8 - blue-violet
+#8367C7 - ube
+#B3E9C7 - magic mint
+#C2F8CB - tea green
+#F0FFF1 - honeydew
+*/
+
 html {
   position: relative;
   min-height: 100%;
@@ -9,11 +17,11 @@ html {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
-  background-color: #1a7b4f;
+  background-color: #731DD8;
 }
 
 body {
-  font: 2em "Helvetica Nue", sans-serif;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   margin-bottom: 80px;
 }
 
@@ -48,12 +56,23 @@ a {
 }
 
 .navbar-default {
-  background-color: #1a7b4f;
+  background-color: #731DD8;
   border: 0;
+  border-bottom: 2px solid #8367C7;
+  border-radius: 0;
 }
 
 .navbar-brand {
   color: #fff !important;
+  font-size: 22px;
+}
+
+.navbar-title {
+  font-variant: small-caps;
+}
+
+.navbar-subtitle {
+  font-variant: all-small-caps;
 }
 
 .text-muted {
