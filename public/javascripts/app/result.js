@@ -11,8 +11,11 @@ surveyApp.controller('ResultController', function($scope, $http, $location){
       return "N/A";
     }
     if(question.answers && question.answers.length){
-      if(question.answers.length == 1 && question.answers[0]){
-        return question.answers[0];
+      if(question.answers.length == 1){
+        if(question.answers[0]){
+          return question.answers[0];
+        }
+        return "N/A"
       } else{
         var res = "";
         for(var i = 0; i < question.answers.length; i++){
