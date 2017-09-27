@@ -23,7 +23,7 @@
     <div class="page-content">
       <div class="container-fluid">
         <h3>Survey Results</h3>
-        <div class="row" ng-repeat="result in results">
+        <div class="row" ng-repeat="result in results" style="margin-bottom: 10px">
           <div class="col-sm-5">{{result.questions[0].answers[0].split("|")[1]}}</div>
           <div class="col-sm-3"><button ng-click="view(result)">View</button></div>
         </div>
