@@ -16,6 +16,28 @@ module.exports = function(app){
     res.render('results');
   });
 
+  app.get('/results/:id', requireAuth, function(req, res){
+    res.render('result');
+  });
+
+  app.post('/results', requireAuth, function(req, res){
+    submissionRepository.getAll(function(err, results){
+      if(err){
+        console.log(err);
+      }
+      res.json({ results: results, error : !!err });
+    });
+  });
+
+  app.post('/results/:id', requireAuth, function(req, res){
+    var item = submissionRepository.get(req.params.id, function(err, data){
+      if(err){
+        console.log(err);
+      }
+      res.json({ result: data, error : !!err });
+    });
+  });
+
   app.post('/submit', function(req, res){
     var body = req.body;
     if(!(body instanceof Array)){

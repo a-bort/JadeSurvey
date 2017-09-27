@@ -6,11 +6,11 @@
     <script type="text/javascript" src="/javascripts/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/javascripts/vendor/angular/angular.min.js"></script>
     <script type="text/javascript" src="/javascripts/vendor/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/javascripts/app/results.js"></script>
+    <script type="text/javascript" src="/javascripts/app/result.js"></script>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
   </head>
-  <body ng-app="SurveyApp" ng-controller="ResultsController">
+  <body ng-app="SurveyApp" ng-controller="ResultController">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -22,10 +22,13 @@
     </nav>
     <div class="page-content">
       <div class="container-fluid">
-        <h3>Survey Results</h3>
-        <div class="row" ng-repeat="result in results">
-          <div class="col-sm-5">{{result.questions[0].answers[0].split("|")[1]}}</div>
-          <div class="col-sm-3"><button ng-click="view(result)">View</button></div>
+        <h3>Survey Result</h3>
+        <div class="row" ng-repeat="question in result.questions">
+          <hr/>
+          <b>{{question.question}}</b>
+          <div style="white-space: pre-line">
+            {{parseAnswer(question)}}
+          </div>
         </div>
       </div>
     </div>
