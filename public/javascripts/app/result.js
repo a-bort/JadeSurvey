@@ -7,6 +7,9 @@ surveyApp.controller('ResultController', function($scope, $http, $location){
   $scope.result = {};
 
   $scope.parseAnswer = function(question){
+    if(question.na){
+      return "N/A";
+    }
     if(question.answers && question.answers.length){
       if(question.answers.length == 1 && question.answers[0]){
         return question.answers[0];
@@ -23,9 +26,8 @@ surveyApp.controller('ResultController', function($scope, $http, $location){
         }
         return res;
       }
-    } else {
-      return "N/A"
     }
+    return "N/A";
   }
 
   $scope.init = function(){
