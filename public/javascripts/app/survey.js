@@ -124,7 +124,7 @@ var questions = [
       title: "Do you enjoy lush green landscapes?",
       type: "radio",
       items: [
-        {label: "Yes! I want a forest in my yard", value: "yes"},
+        {label: "Yes! I want a forest in my space", value: "yes"},
         {label: "Some greenery is nice", value: "some"},
         {label: "Not thanks, too plain", value: "no"}
       ],
@@ -299,6 +299,10 @@ surveyApp.controller('SurveyController', function($scope, $http, $location){
   $scope.title = "Nightshade";
   $scope.subtitle = "Culinary Landscapes";
 
+  $scope.farewell = "Thanks for the info!";
+  $scope.farewellSubhead = " We will be in touch shortly";
+  $scope.url = "http://www.nightshadedc.com";
+
   $scope.activeIndex = 0;
   $scope.activeQuestion = questions[$scope.activeIndex];
 
@@ -342,12 +346,14 @@ surveyApp.controller('SurveyController', function($scope, $http, $location){
         alert(data.error);
         return;
       }
-      alert('Success! (Redirect instead)');
+      $scope.complete = true;
     }).error(function(err){
       console.log(err);
       alert('Error saving game');
     });
   }
+
+  $scope.complete = false;
 
   var answerStack = [];
 });

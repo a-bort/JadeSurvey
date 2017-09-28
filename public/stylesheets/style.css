@@ -25,6 +25,10 @@ body {
   margin-bottom: 80px;
 }
 
+h4 {
+  font-size: 15px;
+}
+
 .form-group {
   margin-bottom: 10px !important;
 }
@@ -77,6 +81,19 @@ a {
 
 .text-muted {
   color: #bbb !important;
+}
+
+.farewell {
+  text-align: center;
+}
+
+.farewell-subhead {
+  text-align: center;
+}
+
+.website {
+  margin-top: 120px;
+  text-align: center;
 }
 
 /*
