@@ -1,4 +1,9 @@
 /*pallete ideas
+http://paletton.com/palette.php?uid=34e1j0kllllaFw0g0qFqFg0w0aF
+#261758 - purple
+
+
+
 #731DD8 - blue-violet
 #8367C7 - ube
 #B3E9C7 - magic mint
@@ -17,7 +22,8 @@ html {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
-  background-color: #731DD8;
+  background-color: #261758;
+  border-top: 2px solid #615192;
 }
 
 body {
@@ -60,9 +66,9 @@ a {
 }
 
 .navbar-default {
-  background-color: #731DD8;
+  background-color: #261758;
   border: 0;
-  border-bottom: 2px solid #8367C7;
+  border-bottom: 2px solid #615192;
   border-radius: 0;
 }
 
