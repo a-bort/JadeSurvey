@@ -1,7 +1,7 @@
 var submissionModel = require('../models/submission').model;
 
 exports.getAll = function(callback){
-  submissionModel.find().exec(function(err, data){
+  submissionModel.find().sort({reviewed: 1}).sort({created: -1}).exec(function(err, data){
     if(err){
       console.log(err);
       callback("An error has occurred", data);
@@ -38,4 +38,8 @@ exports.create = function(model, callback){
 
     callback();
   });
+}
+
+exports.markReviewed = function(id, reviewed, callback){
+  submissionModel.update({_id: id}, { $set: { reviewed: reviewed}}, callback);
 }

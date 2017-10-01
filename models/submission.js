@@ -4,7 +4,7 @@ var question = require('./question');
 var submissionSchema = mongoose.Schema({
   questions: [question.schema],
   created: { type: Date },
-  unread: { type: Boolean, default: true }
+  reviewed: { type: Boolean, default: false }
 });
 
 exports.schema = submissionSchema

@@ -22,13 +22,21 @@
     </nav>
     <div class="page-content">
       <div class="container-fluid">
-        <h3>Survey Result</h3>
+        <h3 class="section-header">Survey Result</h3>
+        <div class="row">
+          <button class="btn btn-success" ng-show="!result.reviewed" ng-click="markReviewed(result)">Reviewed</button>
+          <button class="btn" ng-show="result.reviewed" ng-click="markReviewed(result)">Re-open</button>
+        </div>
         <div class="row" ng-repeat="question in result.questions">
           <hr/>
           <b>{{question.question}}</b>
           <div style="white-space: pre-line">
             {{parseAnswer(question)}}
           </div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+          <button class="btn btn-success" ng-show="!result.reviewed" ng-click="markReviewed(result)">Reviewed</button>
+          <button class="btn" ng-show="result.reviewed" ng-click="markReviewed(result)">Re-open</button>
         </div>
       </div>
     </div>

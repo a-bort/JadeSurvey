@@ -33,6 +33,19 @@ surveyApp.controller('ResultController', function($scope, $http, $location){
     return "N/A";
   }
 
+  $scope.markReviewed = function(result){
+    $http.post('/results/reviewed/' + result._id, {reviewed: !result.reviewed}).success(function(data){
+      if(data.error){
+        console.log("An error occurred");
+        return;
+      }
+      result.reviewed = !result.reviewed;
+    }).error(function(err){
+      alert("An unexpected error occurred");
+      console.log(err);
+    });
+  }
+
   $scope.init = function(){
     $http.post($location.path()).success(function(data){
       if(data.error){

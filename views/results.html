@@ -22,10 +22,19 @@
     </nav>
     <div class="page-content">
       <div class="container-fluid">
-        <h3>Survey Results</h3>
+        <h3 class="section-header">Survey Results</h3>
         <div class="row" ng-repeat="result in results" style="margin-bottom: 10px">
-          <div class="col-sm-5">{{result.questions[0].answers[0].split("|")[1]}}</div>
-          <div class="col-sm-3"><button ng-click="view(result)">View</button></div>
+          <div class="col-sm-5">
+            <span class="glyphicon glyphicon-star warning" ng-show="!result.reviewed" aria-hidden="true"></span>
+            {{result.questions[0].answers[0].split("|")[1]}}
+          </div>
+          <div class="col-sm-3">
+            <button class="btn" ng-click="view(result)">View</button>
+          </div>
+          <div class="col-sm-3">
+            <button class="btn btn-success" ng-show="!result.reviewed" ng-click="markReviewed(result)">Reviewed</button>
+            <button class="btn" ng-show="result.reviewed" ng-click="markReviewed(result)">Re-open</button>
+          </div>
         </div>
       </div>
     </div>

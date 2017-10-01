@@ -38,6 +38,17 @@ module.exports = function(app){
     });
   });
 
+  app.post('/results/reviewed/:id', requireAuth, function(req, res){
+    if(req.body.reviewed === null || req.body.reviewed === undefined){
+      console.log("Missing reviewed parameter");
+      send400(res);
+      return;
+    }
+    submissionRepository.markReviewed(req.params.id, req.body.reviewed, function(err){
+      defaultJson(res, err);
+    });
+  });
+
   app.post('/submit', function(req, res){
     var body = req.body;
     if(!(body instanceof Array)){
