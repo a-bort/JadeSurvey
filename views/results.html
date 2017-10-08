@@ -14,26 +14,38 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <span class="navbar-brand">
+          <a href="/results" class="navbar-brand">
             <span class="navbar-title">{{title}}</span>
             <span class="navbar-subtitle">{{subtitle}}</span>
+          </a>
         </div>
       </div>
     </nav>
     <div class="page-content">
       <div class="container-fluid">
         <h3 class="section-header">Survey Results</h3>
-        <div class="row" ng-repeat="result in results" style="margin-bottom: 10px">
-          <div class="col-sm-5">
-            <span class="glyphicon glyphicon-star warning" ng-show="!result.reviewed" aria-hidden="true"></span>
+        <div class="row" ng-hide="anyVisibleResults()">
+          <hr/>
+          <div class="col-sm-12">
+            <h4>No Results to Display</h4>
+          </div>
+        </div>
+        <div class="row" ng-repeat="result in results | filter:resultShouldBeShown" style="margin-bottom: 10px">
+          <hr/>
+          <div class="col-sm-6 result-name">
             {{result.questions[0].answers[0].split("|")[1]}}
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-6">
             <button class="btn" ng-click="view(result)">View</button>
-          </div>
-          <div class="col-sm-3">
             <button class="btn btn-success" ng-show="!result.reviewed" ng-click="markReviewed(result)">Reviewed</button>
             <button class="btn" ng-show="result.reviewed" ng-click="markReviewed(result)">Re-open</button>
+          </div>
+        </div>
+        <div class="row">
+          <hr/>
+          <div class="col-sm-12">
+            <button class="btn" ng-hide="showingReviewed" ng-click="showReviewed()">Show Reviewed</button>
+            <button class="btn" ng-show="showingReviewed" ng-click="hideReviewed()">Hide Reviewed</button>
           </div>
         </div>
       </div>

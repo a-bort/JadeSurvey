@@ -14,24 +14,31 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <span class="navbar-brand">
+          <a href="/results" class="navbar-brand">
             <span class="navbar-title">{{title}}</span>
             <span class="navbar-subtitle">{{subtitle}}</span>
+          </a>
         </div>
       </div>
     </nav>
     <div class="page-content">
       <div class="container-fluid">
-        <h3 class="section-header">Survey Result</h3>
         <div class="row">
-          <button class="btn btn-success" ng-show="!result.reviewed" ng-click="markReviewed(result)">Reviewed</button>
-          <button class="btn" ng-show="result.reviewed" ng-click="markReviewed(result)">Re-open</button>
+          <div class="col-sm-8">
+            <h3 class="section-header">Survey Result</h3>
+          </div>
+          <div class="col-sm-4">
+            <button class="btn btn-success header-btn" ng-show="!result.reviewed" ng-click="markReviewed(result)">Reviewed</button>
+            <button class="btn header-btn" ng-show="result.reviewed" ng-click="markReviewed(result)">Re-open</button>
+          </div>
         </div>
         <div class="row" ng-repeat="question in result.questions">
           <hr/>
-          <b>{{question.question}}</b>
-          <div style="white-space: pre-line">
-            {{parseAnswer(question)}}
+          <div class="col-sm-12">
+            <b>{{question.question}}</b>
+            <div style="white-space: pre-line">
+              {{parseAnswer(question)}}
+            </div>
           </div>
         </div>
         <div class="row" style="margin-top: 30px;">

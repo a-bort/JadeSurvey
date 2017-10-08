@@ -6,6 +6,8 @@ surveyApp.controller('ResultsController', function($scope, $http, $location){
 
   $scope.results = [];
 
+  $scope.showingReviewed = false;
+
   $scope.view = function(result){
     window.location = "/results/" + result._id;
   }
@@ -21,6 +23,27 @@ surveyApp.controller('ResultsController', function($scope, $http, $location){
       alert("An unexpected error occurred");
       console.log(err);
     });
+  }
+
+  $scope.showReviewed = function(){
+    $scope.showingReviewed = true;
+  }
+
+  $scope.hideReviewed = function(){
+    $scope.showingReviewed = false;
+  }
+
+  $scope.resultShouldBeShown = function(result){
+    return !result.reviewed || $scope.showingReviewed;
+  }
+
+  $scope.anyVisibleResults = function(){
+    for(var i = 0; i < $scope.results.length; i++){
+      if($scope.resultShouldBeShown($scope.results[i])){
+        return true;
+      }
+    }
+    return false;
   }
 
   $scope.init = function(){

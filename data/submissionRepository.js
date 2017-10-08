@@ -1,7 +1,7 @@
 var submissionModel = require('../models/submission').model;
 
 exports.getAll = function(callback){
-  submissionModel.find().sort({reviewed: 1}).sort({created: -1}).exec(function(err, data){
+  submissionModel.find().sort({created: -1}).exec(function(err, data){
     if(err){
       console.log(err);
       callback("An error has occurred", data);

@@ -36,7 +36,7 @@ h4 {
 }
 
 .section-header {
-  margin-bottom: 30px; 
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -72,6 +72,10 @@ h4 {
 
 .survey-panel input[type=text] {
   width: 100%;
+}
+
+.result-name {
+  margin-bottom: 10px;
 }
 
 a {
@@ -142,6 +146,10 @@ a {
         float: right;
     }
 
+    .header-btn {
+      margin-top: 15px;
+      float: right;
+    }
 }
 
 /*
