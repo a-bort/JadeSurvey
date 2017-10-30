@@ -79,7 +79,15 @@ h4 {
 }
 
 a {
-  color: #00B7FF;
+  color: #261758;
+}
+
+a:hover {
+  color: #887CAF;
+}
+
+.btn-action {
+  background-color: #887CAF;
 }
 
 .navbar-default {

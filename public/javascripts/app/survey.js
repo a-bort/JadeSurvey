@@ -39,7 +39,10 @@ var questions = [
         {label: "Practicality & Utility", value: "utility"},
         {label: "Beautiy & Aesthetics", value: "beauty"},
         {label: "Both about the same", value: "both"}
-      ]
+      ],
+      options: {
+        required: "any"
+      }
     }),
   new Question({
       title: "Do you cook at home?",
@@ -52,6 +55,9 @@ var questions = [
       enabled: function(){
         return questions[1].getValues().includes("produce")
                 || questions[1].getValues().includes("herbs");
+      },
+      options: {
+        required: "any"
       }
     }),
   new Question({
@@ -66,8 +72,9 @@ var questions = [
       ],
       other: true,
       enabled: function(){
-        return questions[1].getValues().includes("produce")
-                || questions[1].getValues().includes("herbs");
+        return (questions[1].getValues().includes("produce")
+                || questions[1].getValues().includes("herbs"))
+                && !questions[3].getValues().includes("no");
       }
     }),
   new Question({
@@ -106,8 +113,24 @@ var questions = [
       ],
       enabled: function(){
         return questions[1].getValues().includes("herbs");
+      },
+      options: {
+        required: "any"
       }
     }),
+  new Question({
+        title: "What type(s) of tea?",
+        type: "checkbox",
+        items: [
+          {label: "Chamomile", value: "chamomile"},
+          {label: "Black", value: "black"},
+          {label: "Hibiscus", value: "black"}
+        ],
+        enabled: function(){
+          return questions[7].getValues().includes("yes");
+        },
+        other: true
+      }),
   new Question({
       title: "Do you enjoy colorful flowers?",
       type: "radio",
@@ -118,6 +141,9 @@ var questions = [
       ],
       enabled: function(){
         return questions[1].getValues().includes("nature");
+      },
+      options: {
+        required: "any"
       }
     }),
   new Question({
@@ -130,6 +156,9 @@ var questions = [
       ],
       enabled: function(){
         return questions[1].getValues().includes("nature");
+      },
+      options: {
+        required: "any"
       }
     }),
   new Question({
@@ -168,7 +197,10 @@ var questions = [
       {label: "At least half an hour a day", value: "alot"},
       {label: "Hard to say, my schedule is unpredictable", value: "dunno"},
       {label: "I don’t really have free time", value: "none"}
-    ]
+    ],
+    options: {
+      required: "any"
+    }
   }),
   new Question({
     title: "If you had expert advice easily available on your smartphone, would you be more confident when gardening or caring for a landscape?",
@@ -177,7 +209,10 @@ var questions = [
       {label: "Yes! Sounds appealing", value: "yes"},
       {label: "No thanks, I’m confident in my abilities", value: "nah"},
       {label: "Leave technology out of it!", value: "no"}
-    ]
+    ],
+    options: {
+      required: "any"
+    }
   }),
   new Question({
     title: "Are there certain plants you would like to specifically request?",
