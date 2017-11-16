@@ -1,21 +1,6 @@
 var surveyApp = angular.module('SurveyApp', []);
 
 var questions = [
-  new Question({
-    title: "Let's get some info about you",
-    type: "text",
-    items: [
-      {label: "Name"},
-      {label: "Email"},
-      {label: "Phone"},
-      {label: "Street Address"},
-      {label: "Apartment / Suite", required: false},
-      {label: "Zip"}
-    ],
-    options: {
-      required: "all"
-    }
-  }),
   new Question(
     {
       title: "What are you looking to get out of your outdoor space? (Select all that apply)",
@@ -53,8 +38,8 @@ var questions = [
         {label: "Never", value: "no"}
       ],
       enabled: function(){
-        return questions[1].getValues().includes("produce")
-                || questions[1].getValues().includes("herbs");
+        return questions[0].getValues().includes("produce")
+                || questions[0].getValues().includes("herbs");
       },
       options: {
         required: "any"
@@ -72,9 +57,9 @@ var questions = [
       ],
       other: true,
       enabled: function(){
-        return (questions[1].getValues().includes("produce")
-                || questions[1].getValues().includes("herbs"))
-                && !questions[3].getValues().includes("no");
+        return (questions[0].getValues().includes("produce")
+                || questions[0].getValues().includes("herbs"))
+                && !questions[2].getValues().includes("no");
       }
     }),
   new Question({
@@ -87,7 +72,7 @@ var questions = [
       ],
       other: true,
       enabled: function(){
-        return questions[1].getValues().includes("produce");
+        return questions[0].getValues().includes("produce");
       }
     }),
   new Question({
@@ -101,7 +86,7 @@ var questions = [
         required: "any"
       },
       enabled: function(){
-        return questions[1].getValues().includes("herbs");
+        return questions[0].getValues().includes("herbs");
       }
     }),
   new Question({
@@ -112,7 +97,7 @@ var questions = [
         {label: "No", value: "no"}
       ],
       enabled: function(){
-        return questions[1].getValues().includes("herbs");
+        return questions[0].getValues().includes("herbs");
       },
       options: {
         required: "any"
@@ -127,7 +112,7 @@ var questions = [
           {label: "Hibiscus", value: "black"}
         ],
         enabled: function(){
-          return questions[7].getValues().includes("yes");
+          return questions[6].getValues().includes("yes");
         },
         other: true
       }),
@@ -140,7 +125,7 @@ var questions = [
         {label: "Not so much", value: "no"}
       ],
       enabled: function(){
-        return questions[1].getValues().includes("nature");
+        return questions[0].getValues().includes("nature");
       },
       options: {
         required: "any"
@@ -155,7 +140,7 @@ var questions = [
         {label: "Not thanks, too plain", value: "no"}
       ],
       enabled: function(){
-        return questions[1].getValues().includes("nature");
+        return questions[0].getValues().includes("nature");
       },
       options: {
         required: "any"
@@ -172,7 +157,7 @@ var questions = [
     ],
     other: true,
     enabled: function(){
-      return questions[1].getValues().includes("wildlife");
+      return questions[0].getValues().includes("wildlife");
     }
   }),
   new Question({
@@ -186,7 +171,7 @@ var questions = [
     ],
     other: true,
     enabled: function(){
-      return questions[1].getValues().includes("utility");
+      return questions[0].getValues().includes("utility");
     }
   }),
   new Question({
@@ -221,6 +206,17 @@ var questions = [
   new Question({
     title: "Anything else you'd like to share with us?",
     type: "textarea"
+  }),
+  new Question({
+    title: "Just a few pieces of identifying info, and we're all done.",
+    type: "text",
+    items: [
+      {label: "Name"},
+      {label: "Email"}
+    ],
+    options: {
+      required: "all"
+    }
   })
 ];
 
