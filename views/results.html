@@ -33,7 +33,7 @@
         <div class="row" ng-repeat="result in results | filter:resultShouldBeShown" style="margin-bottom: 10px">
           <hr/>
           <div class="col-sm-6 result-name">
-            {{result.questions[0].answers[0].split("|")[1]}}
+            {{getEmail(result)}}
           </div>
           <div class="col-sm-6">
             <button class="btn" ng-click="view(result)">View</button>

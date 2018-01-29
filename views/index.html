@@ -22,7 +22,11 @@
     </nav>
     <div class="page-content">
       <div class="container-fluid survey-panel">
-        <form class="form-horizontal" ng-hide="complete">
+        <div ng-show="intro">
+          <div class="intro-header"><h3>{{introHeader}}</h3></div>
+          <div class="intro"><p>{{introText}}</p></div>
+        </div>
+        <form class="form-horizontal" ng-hide="complete || intro">
           <div class="form-group">
             <div class="col-sm-12">
               <h3>{{activeQuestion.title}}</h3>
@@ -70,9 +74,10 @@
           </div>
         </form>
         <div ng-hide="complete">
-          <button class="btn" ng-click="prev()" ng-disabled="activeIndex == 0">< Previous</button>
+          <button class="btn" ng-click="prev()" ng-disabled="activeIndex == 0" ng-hide="intro">< Previous</button>
           <span class="right-buttons">
-            <button class="btn" ng-click="next()" ng-disabled="!questionComplete()" ng-show="!lastQuestion()">Next ></button>
+            <button class="btn btn-success" ng-click="start()" ng-show="intro">Let the games begin!</button>
+            <button class="btn" ng-click="next()" ng-disabled="!questionComplete()" ng-show="!lastQuestion() && !intro">Next ></button>
             <button class="btn btn-success" ng-click="submit()" ng-disabled="!questionComplete()" ng-show="lastQuestion()">Complete</button>
           </span>
         </div>

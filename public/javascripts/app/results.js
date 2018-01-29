@@ -6,6 +6,12 @@ surveyApp.controller('ResultsController', function($scope, $http, $location){
 
   $scope.results = [];
 
+  $scope.getEmail = function(result){
+    var qs = result.questions.filter(q => q.name == "email");
+    if(!qs.length) return result.questions[0].answers[0].split("|")[1]; //old format
+    return qs[0].answers[0].split("|")[1];
+  }
+
   $scope.showingReviewed = false;
 
   $scope.view = function(result){
